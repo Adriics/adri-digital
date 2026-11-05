@@ -51,6 +51,36 @@ const businesses = [
   "Otros negocios locales",
 ];
 
+const projects = [
+  {
+    number: "01",
+    tag: "HOSTELERÍA · MVP",
+    title: "Sistema de avisos con QR",
+    description:
+      "Un sistema pensado para que los clientes de un bar o restaurante puedan avisar al camarero desde su mesa mediante un código QR.",
+    details: ["Next.js", "TypeScript", "Supabase", "PostgreSQL"],
+    icon: QrCode,
+  },
+  {
+    number: "02",
+    tag: "DESARROLLO WEB",
+    title: "Aplicaciones web",
+    description:
+      "He desarrollado aplicaciones y MVPs utilizando tecnologías modernas para resolver necesidades concretas.",
+    details: ["React", "Next.js", "TypeScript", "Node.js"],
+    icon: Globe2,
+  },
+  {
+    number: "03",
+    tag: "SOFTWARE",
+    title: "Herramientas y sistemas",
+    description:
+      "También he trabajado en herramientas internas, sistemas de gestión y proyectos propios para aprender construyendo.",
+    details: ["Java", "Spring Boot", "SQL", "APIs REST"],
+    icon: Wrench,
+  },
+];
+
 export default function Home() {
   return (
     <main className="overflow-hidden">
@@ -70,6 +100,13 @@ export default function Home() {
               className="transition-opacity hover:opacity-50"
             >
               Servicios
+            </a>
+
+            <a
+              href="#proyectos"
+              className="transition-opacity hover:opacity-50"
+            >
+              Proyectos
             </a>
 
             <a
@@ -141,6 +178,10 @@ export default function Home() {
                 Ver servicios
               </a>
             </div>
+
+            <p className="mt-5 text-xs font-semibold uppercase tracking-[0.15em] text-black/30">
+              Desarrollo · Digitalización · Soluciones a medida
+            </p>
           </div>
 
           {/* FOTO */}
@@ -158,7 +199,7 @@ export default function Home() {
                 className="h-full w-full object-cover"
               />
 
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/50 to-transparent p-7 pt-24">
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-7 pt-24">
                 <p className="text-2xl font-bold tracking-tight text-white">
                   Adri
                 </p>
@@ -340,7 +381,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PARA QUIEN */}
+      {/* PARA QUIÉN */}
       <section className="bg-white py-24 md:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr]">
@@ -363,7 +404,7 @@ export default function Home() {
                   }`}
                 >
                   <span className="text-xs font-bold text-black/25">
-                    0{index + 1}
+                    {String(index + 1).padStart(2, "0")}
                   </span>
 
                   <p className="mt-6 text-base font-semibold md:text-lg">
@@ -372,6 +413,86 @@ export default function Home() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PROYECTOS */}
+      <section
+        id="proyectos"
+        className="bg-[#171717] py-24 text-white md:py-32"
+      >
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#ff5c35]">
+                Algunos proyectos
+              </span>
+
+              <h2 className="mt-5 max-w-3xl text-4xl font-black tracking-[-0.06em] md:text-6xl">
+                Me gusta aprender
+                <br />
+                <span className="text-white/30">construyendo.</span>
+              </h2>
+            </div>
+
+            <p className="max-w-sm text-base leading-7 text-white/40">
+              Estos son algunos de los proyectos y experimentos que he
+              desarrollado. No son clientes ficticios: son proyectos propios
+              creados para aprender y probar ideas.
+            </p>
+          </div>
+
+          <div className="mt-16 grid gap-5 lg:grid-cols-3">
+            {projects.map((project) => {
+              const Icon = project.icon;
+
+              return (
+                <article
+                  key={project.number}
+                  className="group flex min-h-[440px] flex-col rounded-[2rem] border border-white/10 bg-white/[0.03] p-7 transition hover:-translate-y-1 hover:bg-white/[0.06] md:p-8"
+                >
+                  <div className="flex items-start justify-between">
+                    <span className="text-sm font-bold text-[#ff5c35]">
+                      {project.number}
+                    </span>
+
+                    <Icon
+                      size={28}
+                      strokeWidth={1.5}
+                      className="text-white/30 transition-colors group-hover:text-[#ff5c35]"
+                    />
+                  </div>
+
+                  <div className="mt-12">
+                    <span className="text-[10px] font-bold tracking-[0.18em] text-white/30">
+                      {project.tag}
+                    </span>
+
+                    <h3 className="mt-4 text-2xl font-bold tracking-tight">
+                      {project.title}
+                    </h3>
+
+                    <p className="mt-4 text-sm leading-7 text-white/45">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  <div className="mt-auto pt-10">
+                    <div className="flex flex-wrap gap-2">
+                      {project.details.map((detail) => (
+                        <span
+                          key={detail}
+                          className="rounded-full border border-white/10 px-3 py-1.5 text-[11px] text-white/45"
+                        >
+                          {detail}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -428,10 +549,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SOBRE MI */}
+      {/* SOBRE MÍ */}
       <section
         id="sobre-mi"
-        className="bg-[#171717] py-24 text-white md:py-32"
+        className="bg-white py-24 md:py-32"
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr]">
@@ -440,28 +561,46 @@ export default function Home() {
                 Sobre mí
               </span>
 
-              <h2 className="mt-5 text-5xl font-black tracking-[-0.06em] md:text-7xl">
-                SOY
-                <br />
-                ADRI<span className="text-[#ff5c35]">.</span>
-              </h2>
+              <div className="relative mt-7 max-w-[360px]">
+                <div className="absolute -bottom-5 -right-5 z-10 rounded-2xl bg-[#171717] px-5 py-4 text-sm font-semibold text-white">
+                  Desarrollador
+                  <br />
+                  <span className="text-[#ff5c35]">+</span> soluciones
+                </div>
 
-              <p className="mt-8 text-lg leading-8 text-white/50">
-                Desarrollador con formación en sistemas y desarrollo de
-                aplicaciones.
-              </p>
+                <div className="aspect-[4/5] overflow-hidden rounded-[2rem] bg-[#dedbd2]">
+                  <img
+                    src="/images/adri.jpg"
+                    alt="Adri"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </div>
             </div>
 
             <div>
-              <p className="max-w-3xl text-2xl font-medium leading-10 tracking-tight text-white/90 md:text-3xl">
-                Mi experiencia está principalmente en el desarrollo de
-                software. Ahora quiero utilizar esa parte técnica para ayudar
-                directamente a pequeños negocios.
+              <h2 className="max-w-3xl text-4xl font-black tracking-[-0.06em] md:text-6xl">
+                Me gusta entender primero el problema y después pensar en la
+                tecnología.
+              </h2>
+
+              <p className="mt-8 max-w-3xl text-lg leading-8 text-black/55">
+                Mi formación y experiencia están principalmente relacionadas
+                con el desarrollo de software. He trabajado en entornos
+                profesionales y también he desarrollado proyectos propios para
+                aprender, probar ideas y entender cómo construir productos
+                reales.
+              </p>
+
+              <p className="mt-5 max-w-3xl text-lg leading-8 text-black/70">
+                Ahora quiero utilizar esa parte técnica para ayudar
+                directamente a pequeños negocios, sin convertir cada problema
+                en un proyecto enorme.
               </p>
 
               <div className="mt-12 grid gap-4 sm:grid-cols-2">
-                <div className="rounded-3xl border border-white/10 p-6">
-                  <span className="text-xs font-bold uppercase tracking-[0.15em] text-white/30">
+                <div className="rounded-3xl border border-black/10 bg-[#f5f3ee] p-6">
+                  <span className="text-xs font-bold uppercase tracking-[0.15em] text-black/30">
                     Formación
                   </span>
 
@@ -469,7 +608,7 @@ export default function Home() {
                     CFGS Desarrollo de Aplicaciones Multiplataforma
                   </p>
 
-                  <p className="mt-2 text-sm text-white/40">
+                  <p className="mt-2 text-sm text-black/40">
                     2023 — 2025
                   </p>
 
@@ -477,13 +616,13 @@ export default function Home() {
                     CFGM Sistemas Microinformáticos y Redes
                   </p>
 
-                  <p className="mt-2 text-sm text-white/40">
+                  <p className="mt-2 text-sm text-black/40">
                     2021 — 2023
                   </p>
                 </div>
 
-                <div className="rounded-3xl border border-white/10 p-6">
-                  <span className="text-xs font-bold uppercase tracking-[0.15em] text-white/30">
+                <div className="rounded-3xl border border-black/10 bg-[#f5f3ee] p-6">
+                  <span className="text-xs font-bold uppercase tracking-[0.15em] text-black/30">
                     Experiencia
                   </span>
 
@@ -491,14 +630,15 @@ export default function Home() {
                     Desarrollo de aplicaciones
                   </p>
 
-                  <p className="mt-2 text-sm leading-6 text-white/40">
+                  <p className="mt-2 text-sm leading-6 text-black/40">
                     Entorno Viewnext / CaixaBank
                     <br />
                     2024 — 2025
                   </p>
 
-                  <p className="mt-5 text-sm leading-6 text-white/50">
-                    Java · Spring Boot · JSP · SQL · APIs · Desarrollo web
+                  <p className="mt-5 text-sm leading-6 text-black/50">
+                    Java · Spring Boot · JSP · SQL · APIs REST · Desarrollo
+                    web
                   </p>
                 </div>
               </div>
@@ -516,11 +656,79 @@ export default function Home() {
                 ].map((technology) => (
                   <span
                     key={technology}
-                    className="rounded-full border border-white/10 px-4 py-2 text-xs text-white/50"
+                    className="rounded-full border border-black/10 bg-white px-4 py-2 text-xs text-black/50"
                   >
                     {technology}
                   </span>
                 ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CONFIANZA */}
+      <section className="bg-[#f5f3ee] py-24 md:py-32">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#ff5c35]">
+                Mi forma de trabajar
+              </span>
+
+              <h2 className="mt-5 text-4xl font-black tracking-[-0.06em] md:text-5xl">
+                Directo.
+                <br />
+                Claro.
+                <br />
+                Sin humo.
+              </h2>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-3">
+              <div className="rounded-3xl bg-white p-7">
+                <span className="text-3xl font-black text-[#ff5c35]">
+                  01
+                </span>
+
+                <h3 className="mt-12 text-xl font-bold">
+                  Trato directo
+                </h3>
+
+                <p className="mt-3 text-sm leading-6 text-black/50">
+                  Hablas directamente conmigo. No hay una cadena de personas
+                  entre tu negocio y quien desarrolla la solución.
+                </p>
+              </div>
+
+              <div className="rounded-3xl bg-white p-7">
+                <span className="text-3xl font-black text-[#ff5c35]">
+                  02
+                </span>
+
+                <h3 className="mt-12 text-xl font-bold">
+                  Lo necesario
+                </h3>
+
+                <p className="mt-3 text-sm leading-6 text-black/50">
+                  Si algo puede resolverse de forma sencilla, no tiene sentido
+                  convertirlo en algo complicado.
+                </p>
+              </div>
+
+              <div className="rounded-3xl bg-white p-7">
+                <span className="text-3xl font-black text-[#ff5c35]">
+                  03
+                </span>
+
+                <h3 className="mt-12 text-xl font-bold">
+                  Explicado
+                </h3>
+
+                <p className="mt-3 text-sm leading-6 text-black/50">
+                  Te explico qué hacemos, para qué sirve y qué puedes esperar
+                  antes de empezar.
+                </p>
               </div>
             </div>
           </div>
@@ -551,7 +759,7 @@ export default function Home() {
 
             <div className="flex flex-col justify-end gap-3">
               <a
-                href="https://wa.me/34601351190"
+                href="https://wa.me/TU_NUMERO"
                 target="_blank"
                 rel="noreferrer"
                 className="group flex items-center justify-between rounded-2xl bg-[#171717] px-6 py-5 font-semibold text-white transition hover:bg-white hover:text-[#171717]"
@@ -568,7 +776,7 @@ export default function Home() {
               </a>
 
               <a
-                href="mailto:adriancalvachesanchez4@gmail.com"
+                href="mailto:TU_EMAIL"
                 className="group flex items-center justify-between rounded-2xl border border-black/20 px-6 py-5 font-semibold transition hover:bg-white"
               >
                 Email
